@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { EyeIcon, TrashIcon } from 'lucide-react'
 import { request } from '@/lib/request'
 import { useQuery } from '@tanstack/react-query'
+import User from './User'
 
 export default function Home() {
     const inputRef = useRef<HTMLInputElement>(null)
@@ -35,6 +36,7 @@ export default function Home() {
 
     return (
         <div className="w-full h-full flex justify-center items-center flex-col">
+            <User />
             <div className="flex-1 flex items-center justify-center">
                 <div className="w-[100px] h-[100px]  rounded-xl border-[2px] border-dashed hover:border-blue-400 transition-[border-color] duration-300">
                     <input
