@@ -39,7 +39,7 @@ export default function User() {
                         <Link
                             key={index}
                             href={link.href}
-                            className="flex items-center p-2 hover:bg-gray-100 rounded-lg"
+                            className="flex items-center p-2 hover:bg-gray-100 rounded-lg "
                         >
                             {link.icon}
                             <span className="ml-2">{link.name}</span>
