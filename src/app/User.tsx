@@ -34,7 +34,7 @@ export default function User() {
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                 </PopoverTrigger>
-                <PopoverContent className="w-[150px] p-4">
+                <PopoverContent className="w-[150px] p-2">
                     {links.map((link, index) => (
                         <Link
                             key={index}
