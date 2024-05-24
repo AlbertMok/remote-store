@@ -1,25 +1,41 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-} from '@/components/ui/select'
+    Avatar,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from '@chakra-ui/react'
+import { CircleUserRoundIcon, LogOutIcon } from 'lucide-react'
+import Link from 'next/link'
+
+const links = [
+    {
+        name: '个人信息',
+        icon: <CircleUserRoundIcon size={20} />,
+        href: '/profile',
+    },
+    {
+        name: '退出登录',
+        icon: <LogOutIcon size={20} />,
+        href: '/logout',
+    },
+]
+
 export default function User() {
     return (
         <div className="relative w-[80%] h-20 bg-neutral-600 rounded-full p-5 flex justify-end">
-            <Select>
-                <SelectTrigger className="w-[180px]">
-                    <Avatar>
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
-                </SelectContent>
-            </Select>
+            <Popover>
+                <PopoverTrigger>
+                    <Avatar></Avatar>
+                </PopoverTrigger>
+                <PopoverContent className="w-[150px]">
+                    {links.map((link, index) => (
+                        <Link key={index} href={link.href}>
+                            <span>{link.icon}</span>
+                            <span>{link.name}</span>
+                        </Link>
+                    ))}
+                </PopoverContent>
+            </Popover>
         </div>
     )
 }

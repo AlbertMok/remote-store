@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import './globals.css'
-import QueryProvider from './queryProvider'
+import { Providers } from './Providers'
 
 export const metadata: Metadata = {
     title: 'CloudStore',
@@ -16,7 +16,7 @@ export default function RootLayout({
     return (
         <html lang="en" className="h-full w-full">
             <body className="w-full h-full">
-                <QueryProvider>{children}</QueryProvider>
+                <Providers>{children}</Providers>
             </body>
         </html>
     )
