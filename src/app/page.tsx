@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { EyeIcon, TrashIcon } from "lucide-react";
 import { request } from "@/lib/request";
 import { useQuery } from "@tanstack/react-query";
+
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,20 +35,22 @@ export default function Home() {
 
   return (
     <div className="w-full h-full flex justify-center items-center flex-col">
-      <div className="w-[100px] h-[100px] flex items-center justify-center rounded-xl border-[2px] border-dashed hover:border-blue-400 transition-[border-color] duration-300">
-        <input
-          type="file"
-          className="hidden"
-          ref={inputRef}
-          onChange={() => handleFileChange()}
-        />
-        <button
-          onClick={() => {
-            inputRef.current?.click();
-          }}
-        >
-          <span>Upload</span>
-        </button>
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-[100px] h-[100px]  rounded-xl border-[2px] border-dashed hover:border-blue-400 transition-[border-color] duration-300">
+          <input
+            type="file"
+            className="hidden"
+            ref={inputRef}
+            onChange={() => handleFileChange()}
+          />
+          <button
+            onClick={() => {
+              inputRef.current?.click();
+            }}
+          >
+            <span>Upload</span>
+          </button>
+        </div>
       </div>
 
       {files.map((file, index) => (
