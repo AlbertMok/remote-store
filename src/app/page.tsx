@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input'
 
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { EyeIcon, TrashIcon } from 'lucide-react'
+import { EyeIcon, PlusIcon, TrashIcon } from 'lucide-react'
 import { request } from '@/lib/request'
 import { useQuery } from '@tanstack/react-query'
 import User from './User'
@@ -46,10 +46,12 @@ export default function Home() {
                         onChange={() => handleFileChange()}
                     />
                     <button
+                        className="w-full h-full flex flex-col justify-center items-center"
                         onClick={() => {
                             inputRef.current?.click()
                         }}
                     >
+                        <PlusIcon />
                         <span>Upload</span>
                     </button>
                 </div>

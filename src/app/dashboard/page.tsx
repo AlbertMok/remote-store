@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import {
     Bell,
@@ -31,8 +32,45 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
+
+// className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+const links = [
+    {
+        href: '/dashboard',
+        icon: <Home size={16} />,
+        text: 'Dashboard',
+    },
+    {
+        href: '/orders',
+        icon: <ShoppingCart size={16} />,
+        text: 'Orders',
+    },
+    {
+        href: '/products',
+        icon: <Package size={16} />,
+        text: 'Products',
+    },
+    {
+        href: '/customers',
+        icon: <Users size={16} />,
+        text: 'Customers',
+    },
+    {
+        href: '/analytics',
+        icon: <LineChart size={16} />,
+        text: 'Analytics',
+    },
+]
 
 export default function Dashboard() {
+    const pathName = usePathname()
+    useEffect(() => {
+        console.log(pathName)
+    })
     return (
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
             <div className="hidden border-r bg-muted/40 md:block">
@@ -58,44 +96,21 @@ export default function Dashboard() {
                     </div>
                     <div className="flex-1">
                         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-                            <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                            >
-                                <Home className="h-4 w-4" />
-                                Dashboard
-                            </Link>
-                            <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                            >
-                                <ShoppingCart className="h-4 w-4" />
-                                Orders
-                                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                                    6
-                                </Badge>
-                            </Link>
-                            <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-                            >
-                                <Package className="h-4 w-4" />
-                                Products{' '}
-                            </Link>
-                            <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                            >
-                                <Users className="h-4 w-4" />
-                                Customers
-                            </Link>
-                            <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                            >
-                                <LineChart className="h-4 w-4" />
-                                Analytics
-                            </Link>
+                            {links.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={clsx(
+                                        'flex items-center gap-3 rounded-lg px-3 py-2 transition-all',
+                                        pathName === link.href
+                                            ? 'bg-muted  text-primary hover:text-primary'
+                                            : 'text-muted-foreground hover:text-foreground'
+                                    )}
+                                >
+                                    {link.icon}
+                                    {link.text}
+                                </Link>
+                            ))}
                         </nav>
                     </div>
                     <div className="mt-auto p-4">
